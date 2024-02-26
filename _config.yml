@@ -1,6 +1,6 @@
 # Site settings
 title: Taeng's Blog
-description: '정리를 위한 기술 블로그입니다.'
+description: '공부를 위한 개인 기록용 블로그입니다. 실제 포스팅은 다른 곳에서 이루어지고 있습니다.'
 url: 'http://ytw0415.github.io/'
 baseurl: ''
 # google_analytics: 'UA-XXXXXX-X'
