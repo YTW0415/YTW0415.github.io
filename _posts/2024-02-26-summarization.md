@@ -13,6 +13,20 @@ toc_sticky: true
 date: 2024-02-26
 last_modified_at: 2024-02-26
 ---
+
+# 참고 : RNN to attention
+- Linear Interaction distane : 멀리 떨어진 거에 대해서는 학습이 불가능하다
+- Lack of parallelizability : 병렬 연산이 불가능하다
+- 어텐션의 등장 : 인코더 디코더 사이가 아닌 한 문장 안에서의 어텐션
+- Query -> key * .. -> value
+- 포지셔널 벡터를 정의 : 시퀀스 오더
+  - 장점 : 상대적인 비교가 중요하므로 시퀀스가 길어도 정보를 잃지않는다
+  - 단점 : 학습이 불가능하다
+- nonlinearities in self-attention : feed forward network를 추가하여 해결
+- 디코더에서 미래 시퀀스 정보를 보지못해야한다.
+- https://cpm0722.github.io/pytorch-implementation/transformer (트랜스포머 관련 구현 잘된 곳)
+- 
+
 # Extractive Summary
 
 ## SummaRuNNer (2016)
@@ -56,4 +70,20 @@ last_modified_at: 2024-02-26
 - 데이터셋 관련 설명
   - CNNDM은 원본 문서에 등장하지않은 새로운 단어가 적게 등장
   - XSUM은 짧지만 거의 새로운 단어로만 요약을 작성해 굉장히 abstractive함
-  
+
+## BART 
+- BART는 트랜스포머와 동일한 방법임 -> 디노이징 태스크
+- 커럽트된 인풋을 복귀하는 걸 배우면서 학습함
+- 기존 연구들
+  - XLNet : permutation operation
+  - SpanBERT : masked toekn 분포 개선
+  - UniLM : Maksed token 대체할 컨텍스트 개선
+  - 이러한 연구는 특정 태스크에 집중하여 활용성이 떨어짐
+- Betr와의 비교
+  - MLM과 NSP로 연구
+  - 후속 연구에 따르면 MLM이 가장 효과적임
+- BART의 특성
+  - 인코더-디코더 모델이라 BERT의 단점 개선 가능
+  - BERT 달리 word prediction 이전에 별도의 feed-forward network를 갖고있지 않아 parameter 수가 약 10%정도 적으며 GPT와 다르게 activation function으로 GeLU를 사용한다는 점이다. 또한 decoder의 각 layer는 encoder의 final hidden layer와 cross-attention을 수행한다.
+  - pytorch/fairseq/blob/master/fairseq/task/denoising.py
+  - pytorch/fairseq/blob/master/fairseq/data/denoising_dataset.py
