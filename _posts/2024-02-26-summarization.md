@@ -25,7 +25,6 @@ last_modified_at: 2024-02-26
 - nonlinearities in self-attention : feed forward network를 추가하여 해결
 - 디코더에서 미래 시퀀스 정보를 보지못해야한다.
 - https://cpm0722.github.io/pytorch-implementation/transformer (트랜스포머 관련 구현 잘된 곳)
-- 
 
 # Extractive Summary
 
